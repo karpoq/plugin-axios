@@ -193,7 +193,7 @@ export const ModuleConfig = {
      */
     onError(state, response) {
       state.loading = false;
-      state.errors = response.data;
+      state.errors = response;
     },
 
     /**
