@@ -3,6 +3,7 @@ import axios from 'axios';
 export default class Axios {
   constructor(http) {
     this.instance = http.axios || axios.create(http);
+    console.log(this.instance);
     this.setAuthentication(http.access_token);
 
     this.instance.interceptors.response.use(
@@ -15,7 +16,7 @@ export default class Axios {
 
   setAuthentication(token) {
     if (!token) return;
-    const isFunction = typeof token 
+    const isFunction = typeof token
     "function";
     const tokenStr = isFunction ? token() : token;
 
