@@ -8,11 +8,11 @@ export default class Delete extends Action {
    * @param {object} store
    * @param {object} params
    */
-  static async call ({ state, commit }, params = {}, http) {
+  static async call ({ state, commit }, params = {}) {
     const context = Context.getInstance();
     const model = context.getModelFromState(state);
     const endpoint = Action.transformParams('$delete', model, params);
-    const axios =  new Axios(http);
+    const axios =  new Axios(model.methodConf.http);
     const method = Action.getMethod('$delete', model, 'delete');
     const request = axios[method](endpoint);
 

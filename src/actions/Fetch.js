@@ -14,7 +14,7 @@ export default class Fetch extends Action {
     const endpoint = Action.transformParams('$fetch', model, params);
     console.log('model', model.methodConf.http);
     console.log('modelHttp', http);
-    const axios =  new Axios(http);
+    const axios =  new Axios(model.methodConf.http);
     console.log(http);
     const method = Action.getMethod('$fetch', model, 'get');
     const request = axios[method](endpoint);
