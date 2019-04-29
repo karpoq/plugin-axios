@@ -8,7 +8,7 @@ export default class Get extends Action {
    * @param {object} store
    * @param {object} params
    */
-  static async call ({ state, commit }, params = {}, http = {}) {
+  static async call ({ state, commit }, params = {}, http) {
     const context = Context.getInstance();
     const model = context.getModelFromState(state);
     const endpoint = Action.transformParams('$get', model, params);

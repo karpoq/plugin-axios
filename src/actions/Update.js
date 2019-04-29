@@ -9,7 +9,7 @@ export default class Update extends Action {
    * @param {object} store
    * @param {object} params
    */
-  static async call ({ state, commit }, params = {}) {
+  static async call ({ state, commit }, params = {}, http) {
     if(!params.data || typeof params !== 'object') {
       throw new TypeError("You must include a data object in the params to send a POST request", params)
     }
@@ -17,7 +17,7 @@ export default class Update extends Action {
     const context = Context.getInstance();
     const model = context.getModelFromState(state);
     const endpoint = Action.transformParams('$update', model, params);
-    const axios =  new Axios(model.methodConf.http);
+    const axios =  new Axios(http);
     const method = Action.getMethod('$update', model, 'put');
     const request = axios[method](endpoint, params.data);
 

@@ -8,10 +8,12 @@ export default class Fetch extends Action {
    * @param {object} store
    * @param {object} params
    */
-  static async call ({ state, commit }, params = {}, http = {}) {
+  static async call ({ state, commit }, params = {}, http) {
     const context = Context.getInstance();
     const model = context.getModelFromState(state);
     const endpoint = Action.transformParams('$fetch', model, params);
+    console.log('model', model.methodConf.http);
+    console.log('modelHttp', http);
     const axios =  new Axios(http);
     console.log(http);
     const method = Action.getMethod('$fetch', model, 'get');
