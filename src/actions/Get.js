@@ -8,11 +8,11 @@ export default class Get extends Action {
    * @param {object} store
    * @param {object} params
    */
-  static async call ({ state, commit }, params = {}) {
+  static async call ({ state, commit }, params = {}, http = {}) {
     const context = Context.getInstance();
     const model = context.getModelFromState(state);
     const endpoint = Action.transformParams('$get', model, params);
-    const axios =  new Axios(model.methodConf.http);
+    const axios =  new Axios(http);
     const method = Action.getMethod('$get', model, 'get');
     const request = axios[method](endpoint);
 
